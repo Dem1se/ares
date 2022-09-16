@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "prestart",
+			"path": "",
+			"problemMatcher": [],
+			"label": "npm: prestart - server",
+			"detail": "npm run build"
+		}
+	]
+}
