@@ -1,9 +1,11 @@
-import crypto from 'crypto'
-import { Router } from 'express'
-import { DBClient } from '../database.js'
 import axios from 'axios';
-import razorpay from 'razorpay';
+import crypto from 'crypto';
+import { Router } from 'express';
 import { ObjectId } from 'mongodb';
+import razorpay from 'razorpay';
+import { DBClient } from '../database.js';
+import { toCodeName } from '../typeguards.js';
+import { Form, validateAndNormalizeForm } from '../typeguards.js';
 
 export const submitRouter = Router()
 const dbCon = new DBClient()
@@ -19,7 +21,7 @@ const rzp = new razorpay({
 const eventCount = (await axios.get<Number>('https://kratos23.com/public/events/count')).data
 
 let eventFees: Map<string, number> = new Map();
-const toCodeName = (x: any) => (x.toLowerCase().replaceAll(' ', '_') as string)
+
 for (let i = 0; i < eventCount; i++) {
   let event = (await axios.get(`https://kratos23.com/public/events/event${i}.json`)).data
   let codeName = toCodeName(event.content.name)
@@ -32,43 +34,50 @@ submitRouter.route('/')
     const form = req.body;
     console.log('Recieved form:', form)
 
-    // TODO: do form validation (typeguard shit)
-
-    let chosenEventCodes: Array<string> = form.solo_events.map((x: string) => toCodeName(x))
-    // Team events is a array of code_name strings, assured as of 16.Sep.22 in the kratos front-end code.
-    chosenEventCodes = chosenEventCodes.concat(form.team_events)
-    // #get() not returning undefined is guaranteed by the type guard. Only valid events can be present in form.
-    const totalFee: number = chosenEventCodes.map((x) => eventFees.get(x)).reduce((a, x) => a! + x!)!
-    console.log('total fee', totalFee)
-
-    let dbRes = await forms.insertOne(form)
-    console.log('insert result: ', dbRes)
-
-    let rzpOrder = await rzp.orders.create({
-      amount: totalFee * 100,
-      currency: "INR",
-      notes: {
-        "objID": `${dbRes.insertedId}`
-      }
-    })
-
-    // add the rzp order_id to the original form
-    await forms.updateOne({ _id: dbRes.insertedId }, { $set: { order_id: rzpOrder.id } })
-
-    // redundant check for consistency in value.
-    // wont happen
-    if (totalFee * 100 !== rzpOrder.amount) {
-      console.error(`Locally computed totalAmount and razorPay returned order entity's amount are not equal!`);
-      res.sendStatus(500)
-      next()
+    if (!validateAndNormalizeForm(form)) {
+      console.log("Recieved form is invalid");
+      res.sendStatus(400)
+      return
     }
 
-    res.status(200).send({
-      form_id: dbRes.insertedId,
-      amount: totalFee * 100,
-      order_id: rzpOrder.id,
-      key: process.env.RZP_KEY_ID,
-    });
+    console.log('Recieved form is valid')
+    res.sendStatus(200)
+
+    // let chosenEventCodes: Array<string> = form.solo_events.map((x: string) => toCodeName(x))
+    // // Team events is a array of code_name strings, assured as of 16.Sep.22 in the kratos front-end code.
+    // chosenEventCodes = chosenEventCodes.concat(form.team_events)
+    // // #get() not returning undefined is guaranteed by the type guard. Only valid events can be present in form.
+    // const totalFee: number = chosenEventCodes.map((x) => eventFees.get(x)).reduce((a, x) => a! + x!)!
+    // console.log('total fee', totalFee)
+
+    // let dbRes = await forms.insertOne(form)
+    // console.log('insert result: ', dbRes)
+
+    // let rzpOrder = await rzp.orders.create({
+    //   amount: totalFee * 100,
+    //   currency: "INR",
+    //   notes: {
+    //     "objID": `${dbRes.insertedId}`
+    //   }
+    // })
+
+    // // add the rzp order_id to the original form
+    // await forms.updateOne({ _id: dbRes.insertedId }, { $set: { order_id: rzpOrder.id } })
+
+    // // redundant check for consistency in value.
+    // // wont happen
+    // if (totalFee * 100 !== rzpOrder.amount) {
+    //   console.error(`Locally computed totalAmount and razorPay returned order entity's amount are not equal!`);
+    //   res.sendStatus(500)
+    //   return
+    // }
+
+    // res.status(200).send({
+    //   form_id: dbRes.insertedId,
+    //   amount: totalFee * 100,
+    //   order_id: rzpOrder.id,
+    //   key: process.env.RZP_KEY_ID,
+    // });
   })
 
 submitRouter.route('/verify')
