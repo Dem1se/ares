@@ -49,12 +49,12 @@ export function validateAndNormalizeForm(form: any) {
     // isValid = isValid ? form.has('mobile') : isValid
     // isValid = isValid ? form.has('solo_events') : isValid
     // isValid = isValid ? form.has('team_events') : isValid
-    isValid = isValid ? form.hasOwnProperty('full_name') : isValid
-    isValid = isValid ? form.hasOwnProperty('college_name') : isValid
-    isValid = isValid ? form.hasOwnProperty('email') : isValid
-    isValid = isValid ? form.hasOwnProperty('mobile') : isValid
-    isValid = isValid ? form.hasOwnProperty('solo_events') : isValid
-    isValid = isValid ? form.hasOwnProperty('team_events') : isValid
+    isValid = isValid && form.hasOwnProperty('full_name')
+    isValid = isValid && form.hasOwnProperty('college_name')
+    isValid = isValid && form.hasOwnProperty('email')
+    isValid = isValid && form.hasOwnProperty('mobile')
+    isValid = isValid && form.hasOwnProperty('solo_events')
+    isValid = isValid && form.hasOwnProperty('team_events')
 
     if (!isValid) {
         console.log('line 61')
@@ -65,14 +65,14 @@ export function validateAndNormalizeForm(form: any) {
     // isValid = isValid ? form.get('solo_events').every((x: string) => form.has(x)) : isValid
 
     for (let ev of form['team_events']) {
-        isValid = isValid ? form.hasOwnProperty(ev) : isValid
-        isValid = isValid ? form[ev].hasOwnProperty('full_name') : isValid
-        isValid = isValid ? form[ev].hasOwnProperty('college_name') : isValid
-        isValid = isValid ? form[ev].hasOwnProperty('email') : isValid
-        isValid = isValid ? form[ev].hasOwnProperty('mobile') : isValid
-        isValid = isValid ? form[ev].hasOwnProperty('member1_full_name') : isValid
-        isValid = isValid ? form[ev].hasOwnProperty('member2_full_name') : isValid
-        isValid = isValid ? form[ev].hasOwnProperty('member3_full_name') : isValid
+        isValid = isValid && form.hasOwnProperty(ev)
+        isValid = isValid && form[ev].hasOwnProperty('full_name')
+        isValid = isValid && form[ev].hasOwnProperty('college_name')
+        isValid = isValid && form[ev].hasOwnProperty('email')
+        isValid = isValid && form[ev].hasOwnProperty('mobile')
+        isValid = isValid && form[ev].hasOwnProperty('member1_full_name')
+        isValid = isValid && form[ev].hasOwnProperty('member2_full_name')
+        isValid = isValid && form[ev].hasOwnProperty('member3_full_name')
         console.log('ev ', ev, isValid)
     }
 
@@ -107,9 +107,9 @@ export function validateAndNormalizeForm(form: any) {
     // form.set('team_events', form.get('team_events').filter((x: string) => x !== ""))
 
     // Mandatory single name + optional additional names + spaces + special characters (' . -)
-    let name = /^[A-Za-z]+((\s)?((\'|\-|\.)?([A-Za-z])+))*$/
-    isValid = isValid ? name.test(form.full_name) : isValid
-    isValid = isValid ? name.test(form.college_name) : isValid
+    let name = /^[A-Za-z]+((\s)?(('|-|\.)?([A-Za-z])+))*$/
+    isValid = isValid && name.test(form.full_name)
+    isValid = isValid && name.test(form.college_name)
     // isValid = isValid ? name.test(form.get('full_name')) : isValid
     // isValid = isValid ? name.test(form.get('college_name')) : isValid
     if (!isValid) {
@@ -117,9 +117,8 @@ export function validateAndNormalizeForm(form: any) {
         return false
     }
 
-    // From Praetorian
-    let email = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    isValid = isValid ? email.test(form['email']) : isValid
+    let email = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/
+    isValid = isValid && email.test(form['email'])
     // isValid = isValid ? email.test(form.get('email')) : isValid
     if (!isValid) {
         console.log('line 124')
@@ -127,15 +126,15 @@ export function validateAndNormalizeForm(form: any) {
     }
 
     let mobile = /^[0-9]{10}$/
-    isValid = isValid ? mobile.test(form['mobile']) : isValid
+    isValid = isValid && mobile.test(form['mobile'])
     // isValid = isValid ? mobile.test(form.get('mobile')) : isValid
     if (!isValid) {
         console.log('line 132')
         return false
     }
 
-    isValid = isValid ? form.solo_events.every((x: string) => eventCodes.includes(x)) : isValid
-    isValid = isValid ? form.team_events.every((x: string) => eventCodes.includes(x)) : isValid
+    isValid = isValid && form.solo_events.every((x: string) => eventCodes.includes(x))
+    isValid = isValid && form.team_events.every((x: string) => eventCodes.includes(x))
     if (!isValid) {
         console.log('line 139')
         return false
