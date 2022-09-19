@@ -41,43 +41,41 @@ submitRouter.route('/')
     }
 
     console.log('Recieved form is valid')
-    res.sendStatus(200)
+    let chosenEventCodes: Array<string> = form.solo_events.map((x: string) => toCodeName(x))
+    // Team events is a array of code_name strings, assured as of 16.Sep.22 in the kratos front-end code.
+    chosenEventCodes = chosenEventCodes.concat(form.team_events)
+    // #get() not returning undefined is guaranteed by the type guard. Only valid events can be present in form.
+    const totalFee: number = chosenEventCodes.map((x) => eventFees.get(x)).reduce((a, x) => a! + x!)!
+    console.log('total fee', totalFee)
 
-    // let chosenEventCodes: Array<string> = form.solo_events.map((x: string) => toCodeName(x))
-    // // Team events is a array of code_name strings, assured as of 16.Sep.22 in the kratos front-end code.
-    // chosenEventCodes = chosenEventCodes.concat(form.team_events)
-    // // #get() not returning undefined is guaranteed by the type guard. Only valid events can be present in form.
-    // const totalFee: number = chosenEventCodes.map((x) => eventFees.get(x)).reduce((a, x) => a! + x!)!
-    // console.log('total fee', totalFee)
+    let dbRes = await forms.insertOne(form)
+    console.log('insert result: ', dbRes)
 
-    // let dbRes = await forms.insertOne(form)
-    // console.log('insert result: ', dbRes)
+    let rzpOrder = await rzp.orders.create({
+      amount: totalFee * 100,
+      currency: "INR",
+      notes: {
+        "objID": `${dbRes.insertedId}`
+      }
+    })
 
-    // let rzpOrder = await rzp.orders.create({
-    //   amount: totalFee * 100,
-    //   currency: "INR",
-    //   notes: {
-    //     "objID": `${dbRes.insertedId}`
-    //   }
-    // })
+    // add the rzp order_id to the original form
+    await forms.updateOne({ _id: dbRes.insertedId }, { $set: { order_id: rzpOrder.id } })
 
-    // // add the rzp order_id to the original form
-    // await forms.updateOne({ _id: dbRes.insertedId }, { $set: { order_id: rzpOrder.id } })
+    // redundant check for consistency in value.
+    // wont happen
+    if (totalFee * 100 !== rzpOrder.amount) {
+      console.error(`Locally computed totalAmount and razorPay returned order entity's amount are not equal!`);
+      res.sendStatus(500)
+      return
+    }
 
-    // // redundant check for consistency in value.
-    // // wont happen
-    // if (totalFee * 100 !== rzpOrder.amount) {
-    //   console.error(`Locally computed totalAmount and razorPay returned order entity's amount are not equal!`);
-    //   res.sendStatus(500)
-    //   return
-    // }
-
-    // res.status(200).send({
-    //   form_id: dbRes.insertedId,
-    //   amount: totalFee * 100,
-    //   order_id: rzpOrder.id,
-    //   key: process.env.RZP_KEY_ID,
-    // });
+    res.status(200).send({
+      form_id: dbRes.insertedId,
+      amount: totalFee * 100,
+      order_id: rzpOrder.id,
+      key: process.env.RZP_KEY_ID,
+    });
   })
 
 submitRouter.route('/verify')
