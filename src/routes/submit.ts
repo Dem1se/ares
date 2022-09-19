@@ -46,10 +46,10 @@ submitRouter.route('/')
     chosenEventCodes = chosenEventCodes.concat(form.team_events)
     // #get() not returning undefined is guaranteed by the type guard. Only valid events can be present in form.
     const totalFee: number = chosenEventCodes.map((x) => eventFees.get(x)).reduce((a, x) => a! + x!)!
-    console.log('total fee', totalFee)
+    console.log('Total fee', totalFee)
 
     let dbRes = await forms.insertOne(form)
-    console.log('insert result: ', dbRes)
+    console.log('Insert result: ', dbRes)
 
     let rzpOrder = await rzp.orders.create({
       amount: totalFee * 100,
@@ -89,7 +89,6 @@ submitRouter.route('/verify')
 
     console.log('Recieved verify request for: ', req.body)
 
-    // console.log('Given form id: ', req.body.form_id)
     let givenOrderID: number = req.body.razorpay_order_id;
 
 

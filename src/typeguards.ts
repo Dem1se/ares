@@ -57,7 +57,6 @@ export function validateAndNormalizeForm(form: any) {
     isValid = isValid && form.hasOwnProperty('team_events')
 
     if (!isValid) {
-        console.log('line 61')
         return false
     }
 
@@ -73,11 +72,9 @@ export function validateAndNormalizeForm(form: any) {
         isValid = isValid && form[ev].hasOwnProperty('member1_full_name')
         isValid = isValid && form[ev].hasOwnProperty('member2_full_name')
         isValid = isValid && form[ev].hasOwnProperty('member3_full_name')
-        console.log('ev ', ev, isValid)
     }
 
     if (!isValid) {
-        console.log('line 79')
         return false
     }
 
@@ -113,7 +110,6 @@ export function validateAndNormalizeForm(form: any) {
     // isValid = isValid ? name.test(form.get('full_name')) : isValid
     // isValid = isValid ? name.test(form.get('college_name')) : isValid
     if (!isValid) {
-        console.log('line 115')
         return false
     }
 
@@ -121,7 +117,6 @@ export function validateAndNormalizeForm(form: any) {
     isValid = isValid && email.test(form['email'])
     // isValid = isValid ? email.test(form.get('email')) : isValid
     if (!isValid) {
-        console.log('line 124')
         return false
     }
 
@@ -129,14 +124,12 @@ export function validateAndNormalizeForm(form: any) {
     isValid = isValid && mobile.test(form['mobile'])
     // isValid = isValid ? mobile.test(form.get('mobile')) : isValid
     if (!isValid) {
-        console.log('line 132')
         return false
     }
 
     isValid = isValid && form.solo_events.every((x: string) => eventCodes.includes(x))
     isValid = isValid && form.team_events.every((x: string) => eventCodes.includes(x))
     if (!isValid) {
-        console.log('line 139')
         return false
     }
     // isValid = isValid ? form.get('solo_events').every((x: string) => eventCodes.includes(x)) : isValid
