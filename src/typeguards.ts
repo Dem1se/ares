@@ -107,7 +107,7 @@ export function validateAndNormalizeForm(form: any) {
     // form.set('team_events', form.get('team_events').filter((x: string) => x !== ""))
 
     // Mandatory single name + optional additional names + spaces + special characters (' . -)
-    let name = /^[A-Za-z]+((\s)?(('|-|\.)?([A-Za-z])+))*$/
+    let name = /^[A-Za-z]+((\s)?(('|-|\.)?([A-Za-z])+))*\s*?$/
     isValid = isValid && name.test(form.full_name)
     isValid = isValid && name.test(form.college_name)
     // isValid = isValid ? name.test(form.get('full_name')) : isValid
