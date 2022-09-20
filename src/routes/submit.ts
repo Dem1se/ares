@@ -18,12 +18,12 @@ const rzp = new razorpay({
 })
 
 // setup fee details
-const eventCount = (await axios.get<Number>('https://kratos23.com/public/events/count')).data
+const eventCount = (await axios.get<Number>('https://storage.googleapis.com/kratos23.com/events/count')).data
 
 let eventFees: Map<string, number> = new Map();
 
 for (let i = 0; i < eventCount; i++) {
-  let event = (await axios.get(`https://kratos23.com/public/events/event${i}.json`)).data
+  let event = (await axios.get(`https://storage.googleapis.com/kratos23.com/events/event${i}.json`)).data
   let codeName = toCodeName(event.content.name)
   eventFees.set(codeName, event.content.fee)
 }

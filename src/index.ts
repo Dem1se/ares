@@ -1,4 +1,3 @@
-import axios from 'axios';
 import cors from 'cors';
 import * as dotenv from 'dotenv';
 import express, { Application } from 'express';

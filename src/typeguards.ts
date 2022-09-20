@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 let eventCodes: Array<string> = [];
-const eventCount = (await axios.get<Number>('https://kratos23.com/public/events/count')).data
+const eventCount = (await axios.get<Number>('https://storage.googleapis.com/kratos23.com/events/count')).data
 export const toCodeName = (x: any) => (x.toLowerCase().replaceAll('-', ' ').replaceAll('\'', '').replaceAll(' ', '_') as string)
 for (let i = 0; i < eventCount; i++) {
-    let event = (await axios.get(`https://kratos23.com/public/events/event${i}.json`)).data
+    let event = (await axios.get(`https://storage.googleapis.com/kratos23.com/events/event${i}.json`)).data
     let codeName = toCodeName(event.content.name)
     eventCodes.push(codeName);
 }
