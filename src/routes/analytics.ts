@@ -1,8 +1,8 @@
 import { Router } from 'express';
 
-export const submitRouter = Router()
+export const analyticsRouter = Router()
 
-submitRouter.route('/visit')
+analyticsRouter.route('/views')
     .get(async function (req, res, next) {
         console.log('recieved visit');
         res.sendStatus(200);
