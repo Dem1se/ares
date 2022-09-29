@@ -1,10 +1,8 @@
 import axios from 'axios';
-import crypto from 'crypto';
 import { Router } from 'express';
-import { ObjectId } from 'mongodb';
 import { DBClient } from '../database.js';
 import { toCodeName } from '../typeguards.js';
-import { Form, validateAndNormalizeForm } from '../typeguards.js';
+import { validateAndNormalizeForm } from '../typeguards.js';
 
 export const submitRouter = Router()
 const dbCon = new DBClient()
@@ -49,17 +47,13 @@ submitRouter.route('/')
     // add the rzp order_id to the original form
     // await forms.updateOne({ _id: dbRes.insertedId }, { $set: { order_id: rzpOrder.id } })
 
-    // redundant check for consistency in value.
-    // wont happen
     res.status(200).send({
       form_id: dbRes.insertedId,
       amount: totalFee,
-      // order_id: rzpOrder.id,
-      // key: process.env.RZP_KEY_ID,
     });
   })
 
-submitRouter.route('/verify')
-  .post(async function (req, res, next) {
-    res.sendStatus(200)
-  })
+// submitRouter.route('/verify')
+//   .post(async function (req, res, next) {
+//     res.sendStatus(200) //
+//   })
