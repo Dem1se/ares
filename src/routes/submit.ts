@@ -1,14 +1,35 @@
+import { Storage } from '@google-cloud/storage';
 import axios from 'axios';
 import { Router } from 'express';
+import multer from 'multer';
 import { DBClient } from '../database.js';
-import { toCodeName } from '../typeguards.js';
-import { validateAndNormalizeForm } from '../typeguards.js';
+import { toCodeName, validateAndNormalizeForm } from '../typeguards.js';
 
-export const submitRouter = Router()
 const dbCon = new DBClient()
+
 const forms = dbCon.getDb().collection('forms')
 const payments = dbCon.getDb().collection('payments')
 const falsePayments = dbCon.getDb().collection('false_payments')
+
+// const gcs = new Storage({ keyFilename: './gcs-key.json' })
+const gcs = new Storage({
+  projectId: 'ares-22',
+  credentials: {
+    client_email: process.env.GCS_CL_EMAIL,
+    private_key: process.env.GCS_PK
+  }
+})
+const bucket = gcs.bucket('ares-22-screenshots')
+
+const store = multer.memoryStorage()
+const mult = multer({
+  storage: store,
+  // dest: 'uploads/', // debug statement
+  fileFilter: function (req, file, cb) {
+    cb(null, true) // TODO check for file format
+  },
+  limits: { fileSize: 5000000 } // 5MB
+})
 
 // setup fee details
 const eventCount = (await axios.get<Number>('https://storage.googleapis.com/kratos23.com/events/count')).data
@@ -22,6 +43,7 @@ for (let i = 0; i < eventCount; i++) {
 }
 console.log('Fetched event fees: ', eventFees)
 
+export const submitRouter = Router()
 submitRouter.route('/')
   .post(async function (req, res, next) {
     const form = req.body;
@@ -46,14 +68,40 @@ submitRouter.route('/')
 
     // add the rzp order_id to the original form
     // await forms.updateOne({ _id: dbRes.insertedId }, { $set: { order_id: rzpOrder.id } })
-
-    res.status(200).send({
+    let r = {
       form_id: dbRes.insertedId,
       amount: totalFee,
-    });
+    }
+    console.log(r)
+    res.status(200).send(r);
   })
 
-// submitRouter.route('/verify')
-//   .post(async function (req, res, next) {
-//     res.sendStatus(200) //
-//   })
+submitRouter.route('/payment')
+  .post(mult.single('screenshot'), async function (req, res, next) {
+    // console.log('payment POST: ', req)
+    if (!req.file) {
+      res.sendStatus(400);
+      next();
+    }
+
+    let fileName = `${req.body.form_id}-screenshot-${req.file!.originalname}`;
+    let file = bucket.file(fileName)
+    file
+      .save(req.file!.buffer)
+      .catch((err) => {
+        console.log("Error uploading file")
+        console.log(err)
+      });
+
+    const update = {
+      $set: {
+        screenshot: file.publicUrl()
+      }
+    }
+
+    const dbRes = await forms.updateOne({ _id: req.body.form_id }, update);
+    if (dbRes.acknowledged)
+      res.redirect(303, `https://kratos23.com/success?&fid=${req.body.form_id}`);
+    else
+      res.status(400).send('Error attempting to update database');
+  })
