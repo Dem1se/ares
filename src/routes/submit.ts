@@ -1,5 +1,6 @@
 import { Storage } from '@google-cloud/storage';
 import axios from 'axios';
+import { ObjectID } from 'bson';
 import { Router } from 'express';
 import multer from 'multer';
 import { DBClient } from '../database.js';
@@ -89,17 +90,16 @@ submitRouter.route('/payment')
     file
       .save(req.file!.buffer)
       .catch((err) => {
-        console.log("Error uploading file")
-        console.log(err)
+        console.log("Error uploading file", err)
       });
 
     const update = {
       $set: {
-        screenshot: file.publicUrl()
+        "screenshot": file.publicUrl()
       }
     }
 
-    const dbRes = await forms.updateOne({ _id: req.body.form_id }, update);
+    const dbRes = await forms.updateOne({ _id: new ObjectID(req.body.form_id) }, update);
     if (dbRes.acknowledged)
       res.redirect(303, `https://kratos23.com/success?&fid=${req.body.form_id}`);
     else
