@@ -12,14 +12,14 @@ const forms = dbCon.getDb().collection('forms')
 const payments = dbCon.getDb().collection('payments')
 const falsePayments = dbCon.getDb().collection('false_payments')
 
-// const gcs = new Storage({ keyFilename: './gcs-key.json' })
-const gcs = new Storage({
-  projectId: 'ares-22',
-  credentials: {
-    client_email: process.env.GCS_CL_EMAIL,
-    private_key: process.env.GCS_PK
-  }
-})
+const gcs = new Storage({ keyFilename: './gcs-key.json' })
+// const gcs = new Storage({
+//   projectId: 'ares-22',
+//   credentials: {
+//     client_email: process.env.GCS_CL_EMAIL,
+//     private_key: process.env.GCS_PK
+//   }
+// })
 const bucket = gcs.bucket('ares-22-screenshots')
 
 const store = multer.memoryStorage()
