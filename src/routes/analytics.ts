@@ -12,7 +12,7 @@ analyticsRouter.route('/views')
                 "type": "view",
                 "url": "/"
             },
-            "timestamp": new Date().toISOString()
+            "timestamp": new Date()
         })
         res.sendStatus(200);
     })
