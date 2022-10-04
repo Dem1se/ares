@@ -6,6 +6,10 @@ const dbCon = new DBClient()
 const analy = dbCon.getDb().collection('analytics')
 
 analyticsRouter.route('/views')
+    .all(function (req, res, next) {
+        res.setHeader('cache-control', 'no-store')
+        next()
+    })
     .get(async function (req, res, next) {
         analy.insertOne({
             "metadata": {
