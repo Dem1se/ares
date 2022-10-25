@@ -24,19 +24,19 @@ All the request body and responses are JSON
   - `/`
     | Method | Description | Req Body | Response | HTTP Code | 
     |--------|-------------|------|----------|-|
-    | GET    | Retrieve the list of all submitted forms | *empty* | Array of JSON objects | 200 |
+    | GET    | Retrieve the list of all submitted forms | | Array of JSON objects | 200 |
     
 - `/analytics`
   - `/view`
     | Method | Description | Req Body | Response | HTTP Code | 
     |--------|-------------|------|----------|-|
-    | GET    | Log a site view | *empty*  |  | 200 |
+    | GET    | Log a site view |  |  | 200 |
 
 ## Deployement (basic)
-The simplest way would be to clone the repo and running `docker build` and `docker run`.
+The simplest way would be to clone the repo and running `docker build`, and `docker run`.
 
-But you could also run the program as a bare node application by filling out the *`.env`* file running `npm install` first
-and then running `npm run build` followed by `npm run start`.
+But you could also run the program as a bare node application by filling out the *`.env`* file, running `npm install`, 
+and then running `npm run build`, followed by `npm run start`.
 
 Either way, you'll need a running instance of MonngoDB and the URI to access it along with network access to the cluster or serverless instance.
 
