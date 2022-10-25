@@ -1,0 +1,24 @@
+{
+    "category": "technical",
+    "type": "offline",
+    "content": {
+        "name": "Paper Presentation",
+        "image": "https://storage.googleapis.com/kratos23.com/images/technical/Paper Presentation.png",
+        "fee": 250,
+        "teamBased": "Solo / Team",
+        "teamSize": "1-4",
+        "onlineRegistration": true,
+        "description": "Can your ideas change the world? Step up for here is your chance to display them.",
+        "contact":"Shruti Guna - 8870433010",
+        "rules": [
+            "Topics from all technical domains are accepted",
+            "Working model must be presented. If not, concept must be presented in detail",
+            "Each group should present for 8-10 min",
+            "Paper submitted must be in IEEE format. Papers submitted only in this format will be accepted",
+            "<a href=\"https://owl.purdue.edu/owl/research_and_citation/ieee_style/ieee_general_format.html\">Reference Format</a>",
+            "Paper and presentation should be mailed prior to the event",
+            "Selected teams will be sent an acceptance mail after which payment can be made.",
+            "Mail your abstract and ppt to:ace.official.2k22@gmail.com"
+        ]
+    }
+}

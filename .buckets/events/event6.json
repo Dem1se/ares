@@ -1,0 +1,21 @@
+{
+    "category": "nontechnical",
+    "type": "online",
+    "gform":"https://forms.gle/GtUcLYMPhmTVLoDi9",
+    "content": {
+        "name": "Gaming-Valorant",
+        "image": "https://storage.googleapis.com/kratos23.com/images/nonTechnical/Gaming-Valorant.png",
+        "fee": 250,
+        "teamBased": "Team",
+        "teamSize": "5",
+        "onlineRegistration":true,
+        "description": "Do you think you have what it takes to play in the pro leagues? Step up to prove your worth.",
+        "contact":"Yaswant B - 8072865873",
+        "rules": [
+            "Only lower bracket matches are conducted on a knockout basis.",
+            "The teams are required to bring their own laptops/peripherals on the semi-finals/finals day.",
+            "Map and side selection is based on tosses. (Winner of the toss will be selecting the map and the loser can choose the side).",
+            "The matches will be conducted in standard tournament mode."
+        ]
+    }
+}

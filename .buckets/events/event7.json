@@ -1,0 +1,21 @@
+{
+    "category": "nontechnical",
+    "type": "offline",
+    "content": {
+        "name": "All's Fair in Tug of War",
+        "image": "https://storage.googleapis.com/kratos23.com/images/nonTechnical/All's Fair in Tug of War.png",
+        "fee": 100,
+        "teamBased": "team",
+        "teamSize": "5",
+        "onlineRegistration":false,
+        "description": "The objective is to beat the competition and win the match by winning at least two of the three pulls in the match.",
+        "contact":"Rohith Balaji - 9840119152",
+        "rules": [
+            "The rope used should be of a circumference of approximately 11 cm and should be marked in the middle with a center line as well as two marks that should be placed 4m from the center line.",
+            "At the start of the pull, the center line of the rope should be immediately above the line marked on the ground.",
+            "Both teams pull the rope, the winner being the team who manages to pull the mark on the rope closest to their opponents over the center line.",
+            "The rope must be pulled underarm and nobody’s elbow must go below the knee,otherwise a foul will be called.",
+            "Matches are often the best of three pulls, the winner winning two out of the three pulls."
+        ]
+    }
+}

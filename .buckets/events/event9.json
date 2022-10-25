@@ -1,0 +1,26 @@
+{
+    "category": "nontechnical",
+    "type": "offline",
+    "content": {
+        "name": "Futsal",
+        "image": "https://storage.googleapis.com/kratos23.com/images/nonTechnical/Futsal.png",
+        "fee": 250,
+        "teamBased": "team",
+        "teamSize": "4",
+        "onlineRegistration":true,
+        "description": "Put your skills to the test! you can always blame the weather, the sun or the ground but are you worthy of the prize??",
+        "contact":"Thohith Hewin-9597624159",
+        "rules": [
+           "Length of Game: 4 minutes halves",
+           "Teams can call a 1-minute halftime",
+           "9 minutes per match (extended up to 10 minutes if required)",
+           "Teams comprise of 4 main players (1 goalkeeper) and 1 substitute.",
+           "Conduct of Knockout or League tournament depends on the number of teams.",
+           "Play for referee whistle ",
+           "One-step penalty",
+           "No offensive language or violent conduct.",
+           "Players receiving Yellow card are obliged to a 1-minute ban.",
+           "Players receiving Red card should leave the match."
+        ]
+    }
+}

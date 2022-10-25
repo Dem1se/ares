@@ -1,0 +1,24 @@
+{
+    "category": "technical",
+    "type": "offline",
+    "content": {
+        "name": "Code Play",
+        "image": "https://storage.googleapis.com/kratos23.com/images/technical/Code Play.png",
+        "fee": 100,
+        "teamBased": "Solo / Team",
+        "teamSize": "1-2",
+        "onlineRegistration":true,
+        "description": "Coding but with a twist. play a game inside a game. Join in on an interesting code-a-thon filled with ebb and flow",
+        "contact":"Suruthi - 9626444371",
+        "rules": [
+           "Only one of the team members can code at a time.",
+           "Participants must choose a question randomly from the given 6 sets of questions of varying difficulty levels.",
+           "If a participant’s code passes all the test cases, they will be able to move few steps forward, according to the difficulty level of the question on the code play board.",
+           "Participants must choose a question randomly from the 6 given difficulty levels set.",
+           "If a participant wants to swap a question, then they need to move few steps backward, according to the difficulty level of the question on the code play board.",
+           "The participant or team who reaches the last step in the board first will be considered the winner."
+
+
+        ]
+    }
+}

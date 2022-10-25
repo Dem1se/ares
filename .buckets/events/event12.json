@@ -1,0 +1,22 @@
+{
+    "category": "nontechnical",
+    "type": "offline",
+    "content": {
+        "name": "Channel Surfing",
+        "image": "https://storage.googleapis.com/kratos23.com/images/nonTechnical/Channel Surfing.png",
+        "fee": 150,
+        "teamBased": "team",
+        "teamSize": "5",
+        "onlineRegistration":true,
+        "description": "The contestants engage the audience by enacting different TV channels and quickly switching between them.",
+        "contact":"Dinesh - 8072920341",
+        "rules": [
+         "Participants must enact the channel given by the judges and should be able to adapt to a different channel spontaneously.",
+         "The participants will be judged on their tone, modification and style.",
+         "Any sort of vulgarity will lead to immediate disqualification.",
+         "No preparation time will be given.",
+         "Decision of the judges will be final and up for no  dispute.",
+         "Participants are given a time duration of 6 minutes (5+1)."
+        ]
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "category": "nontechnical",
+    "type": "offline",
+    "content": {
+        "name": "Cine Quiz",
+        "image": "https://storage.googleapis.com/kratos23.com/images/nonTechnical/Cine quiz.png",
+        "fee": 75,
+        "teamBased": "Solo / Team",
+        "teamSize": "1-3",
+        "onlineRegistration":true,
+        "description": "Are you a Kollywood freak? Then this event is for you where we will be shooting questions on movies and songs.",
+        "contact":"Varshini S - 7667270790",
+        "rules": [
+          "Round 1 - A Paper pen quiz where participants scoring the stipulated points for the given questions will proceed to Round 2.",
+          "Round 2-  Participants shall recognize the songs through beats and rhythms. The eligible teams will proceed to round 3.",
+          "Round 3- Finale round where the team should recognize the movie through pictures & plots. The team acquiring the maximum points will be rewarded."
+
+        ]
+    }
+}

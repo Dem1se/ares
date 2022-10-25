@@ -1,0 +1,20 @@
+{
+    "category": "nontechnical",
+    "type": "offline",
+    "content": {
+        "name": "Squid Game",
+        "image": "https://storage.googleapis.com/kratos23.com/images/nonTechnical/squid.png",
+        "fee": 30,
+        "teamBased": "Solo",
+        "teamSize": "1",
+        "onlineRegistration":true,
+        "description": "Like Gi-Hun from squid games said 'you don't trust people here because you can, you do it because you don't have anybody else' Compete as a solo player in the squid game of cse dept, take part in anonymous games and see if you can take home the prize",
+        "contact":" Harishma - 7305182278",
+        "rules": [
+          "Each Contestant compete with their co – contestants in simple games that are anonymous.",
+          "There are totally 3 games.",
+          "Step by step elimination is done after each game.",
+          "Winner is determined at the end of the Third game."
+        ]
+    }
+}

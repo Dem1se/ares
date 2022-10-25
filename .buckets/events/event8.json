@@ -1,0 +1,22 @@
+{
+    "category": "nontechnical",
+    "type": "offline",
+    "content": {
+        "name": "Gaming-FIFA",
+        "image": "https://storage.googleapis.com/kratos23.com/images/nonTechnical/Gaming-FIFA.png",
+        "fee": 100,
+        "teamBased": "team",
+        "teamSize": "2",
+        "onlineRegistration":true,
+        "description":"Wanna prove that your the best? then this is an opportunity to display your console skills.",
+        "contact":"Yaswant B - 8072865873",
+        "rules": [
+            "Only doubles matches are conducted on a knockout basis.",
+            "The teams may bring their own controllers if necessary.",
+            "The teams may choose either of the two sides.",
+            "The matches’ duration will be 4 minutes and 30 seconds. No settings shall be changed.",
+            "In case of a tiebreaker, the match proceeds to penalties. "
+
+        ]
+    }
+}

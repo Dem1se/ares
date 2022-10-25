@@ -1,0 +1,26 @@
+{
+    "category": "technical",
+    "type": "offline",
+    "content": {
+        "name": "Pair Programming",
+        "image": "https://storage.googleapis.com/kratos23.com/images/technical/Pair Programming.png",
+        "fee": 100,
+        "teamBased": "team",
+        "teamSize": "2",
+        "onlineRegistration":true,
+        "description": "Relay but in coding!Do you think you can handle the questions thrown at you? A duo challenge to put your minds to a test.",
+        "contact":"Mohana Prasad - 9790879761",
+        "rules": [
+            "A team can consist of 2 members only.",
+            "The participants are given two problem statements.",
+            "For the First problem statement, One member in a team will code for 5 mins and switches with another team member which will continue alternatively for every 5 mins.",
+            "For the Second problem statement , both members of the team can work together for first 5 mins(applicable for the first few teams finishing the first problem)and rest of the rules are same as the first problem statement ",
+            "First problem statement should be solved by a participant on their own.",
+            "For second problem, both members of the team can work together for a certain time (applicable for top 3 teams that finish the first problem).",
+            "Winners are selected according to the time taken to successfully complete the problem statements."
+
+
+
+        ]
+    }
+}

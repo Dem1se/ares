@@ -1,0 +1,25 @@
+{
+    "category": "technical",
+    "type": "offline",
+    "content": {
+        "name": "CSS Wars",
+        "image": "https://storage.googleapis.com/kratos23.com/images/technical/CSS.png",
+        "fee": 50,
+        "teamBased": "Solo",
+        "teamSize": "1",
+        "onlineRegistration":true,
+        "description": "Predominantly painters are the ones who can draw. Let's change it into programmers for the day. Calling out to design artists to showcase their art through CSS.",
+        "contact":"Ram Sundar - 7904055781",
+        "rules": [
+            "This is an individual participation event.",
+            "In the 1st round, an on-the-spot CSS designing task will be given.",
+            "Qualification to Round 2 is based on the Jury's decision.",
+            "In round 2, qualified participants have to replicate a given web page’s graphics within the given time limit.",
+            "Participants should code only using NotePad.",
+            "Participants are prohibited from using the Internet.",
+            "Judge’s decision is final and up for no dispute."
+            
+
+        ]
+    }
+}

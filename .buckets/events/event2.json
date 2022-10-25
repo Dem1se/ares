@@ -1,0 +1,23 @@
+{
+    "category": "technical",
+    "type": "offline",
+    "content": {
+        "name": "Bug Off",
+        "image": "https://storage.googleapis.com/kratos23.com/images/technical/Debugging.png",
+        "fee": 100,
+        "teamBased": "Solo / Team",
+        "teamSize": "1-2",
+        "onlineRegistration":true,
+        "description": "Bugs are annoying be it in the real world or the computing world. Think you have what it takes to run a code without errors, here's your chance!",
+        "contact":"Suvetha Sri - 8939746096",
+        "rules": [
+           "Participants must have basic knowledge of C/C++.",
+           "Round 1:",
+           "oIt's a quiz round which consists of 15 basic code snippets and debugging  MCQ’s.",
+           "Round 2:",
+           "The qualified team will have to debug the set of programs which will have logical/syntactical errors.",
+           "The programs are written only in C/C++ and all the test cases have to be cleared.",
+           "The team which debugs the maximum number of programs within given time is crowned as the winner."
+        ]
+    }
+}
